@@ -57,6 +57,8 @@ func main() {
 	{
 		v1.POST("/url/shorten", urlEndpoint.PostShorten)
 	}
+	r.GET("/:short_url", urlEndpoint.GetShorUrl)
+
 	r.Run(":8080")
 
 }

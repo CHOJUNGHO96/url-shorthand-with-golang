@@ -20,6 +20,10 @@ func NewUrlServiceImpl(urlRepository repository.UrlRepository, validate *validat
 	}
 }
 
+func (s *UrlServiceImpl) FindShortUrl(shortUrl string) schema.Url {
+	return s.UrlRepository.FindShortUrl(shortUrl)
+}
+
 func (s *UrlServiceImpl) Create(shorten model.Shorten) {
 	err := s.Validate.Struct(shorten)
 	if err != nil {
