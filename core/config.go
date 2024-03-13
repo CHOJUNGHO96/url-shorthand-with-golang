@@ -15,6 +15,7 @@ type Config struct {
 	PostgresDb       string `mapstructure:"POSTGRES_DB"`
 	RedisPort        string `mapstructure:"REDIS_PORT"`
 	RedisServer      string `mapstructure:"REDIS_SERVER"`
+	RedisUser        string `mapstructure:"REDIS_USER"`
 	RedisPassword    string `mapstructure:"REDIS_PASSWORD"`
 	RedisExpireTime  int    `mapstructure:"REDIS_EXPIRE_TIME"`
 }
