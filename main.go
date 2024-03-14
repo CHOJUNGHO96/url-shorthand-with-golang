@@ -33,8 +33,8 @@ func main() {
 	postgres.AutoMigrate(&schema.Url{})
 
 	// redis 연결 "redis://user:password@localhost:6379/0?protocol=3"
-	//redis := db.NewRedisClient(fmt.Sprintf("redis://%s:%s@%s:%s/0?protocol=3", config.RedisUser, config.RedisPassword, config.RedisServer, config.RedisPort))
 	redis := db.NewRedisClient(map[string]string{"redisPassword": config.RedisPassword, "redisServer": config.RedisServer, "redisPort": config.RedisPort})
+
 	// LoggerWithFormatter 미들웨어는 gin.DefaultWriter에 로그를 작성
 	r.Use(gin.LoggerWithFormatter(func(param gin.LogFormatterParams) string {
 		// 사용자 정의 형식
