@@ -7,5 +7,5 @@ import (
 
 type UrlService interface {
 	FindShortUrl(shortUrl string) schema.Url
-	Create(url model.Shorten)
+	Create(url model.Shorten) string
 }

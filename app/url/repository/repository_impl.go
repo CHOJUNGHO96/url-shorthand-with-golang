@@ -30,7 +30,7 @@ func (r *UrlRepositoryImpl) FindShortUrl(shortUrl string) schema.Url {
 	}
 }
 
-func (r *UrlRepositoryImpl) Create(url schema.Url) {
+func (r *UrlRepositoryImpl) Create(url schema.Url) schema.Url {
 	result := r.Db.Create(&url)
 	if result.Error != nil {
 		panic(result.Error)
@@ -40,4 +40,5 @@ func (r *UrlRepositoryImpl) Create(url schema.Url) {
 	if err != nil {
 		panic(err)
 	}
+	return url
 }

@@ -28,8 +28,6 @@ func (e *Endpoint) PostShorten(c *gin.Context) {
 		base62DecodeData := GetDecodeBase62(hashData) // 2309683996913
 		url.ShortUrl = hashData
 		url.UrlId = uint64(base62DecodeData)
-		e.urlService.Create(url)
+		c.JSON(http.StatusOK, e.urlService.Create(url))
 	}
-
-	c.JSON(http.StatusOK, "success")
 }
