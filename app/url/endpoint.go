@@ -18,7 +18,7 @@ func NewUrlEndpoint(urlService service.UrlService) Endpoint {
 func (e *Endpoint) GetShorUrl(c *gin.Context) {
 	shortUrl := c.Params.ByName("short_url")
 	userInfo := e.urlService.FindShortUrl(shortUrl)
-	c.Redirect(http.StatusMovedPermanently, userInfo.LongUrl)
+	c.Redirect(http.StatusMovedPermanently, userInfo)
 }
 
 func (e *Endpoint) PostShorten(c *gin.Context) {

@@ -3,6 +3,7 @@ package repository
 import "url-shorthand-with-golang/db/schema"
 
 type UrlRepository interface {
-	FindShortUrl(shortUrl string) schema.Url
+	FindShortUrlRedis(shortUrl string) string
+	FindShortUrlPostgresql(shortUrl string) string
 	Create(url schema.Url) schema.Url
 }

@@ -1,6 +1,7 @@
 package service
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/go-playground/validator/v10"
 	"time"
@@ -21,8 +22,17 @@ func NewUrlServiceImpl(urlRepository repository.UrlRepository, validate *validat
 	}
 }
 
-func (s *UrlServiceImpl) FindShortUrl(shortUrl string) schema.Url {
-	return s.UrlRepository.FindShortUrl(shortUrl)
+func (s *UrlServiceImpl) FindShortUrl(shortUrl string) string {
+	urlInfo := &schema.Url{}
+	cashUrlInfo := s.UrlRepository.FindShortUrlRedis(shortUrl)
+	if cashUrlInfo != "" {
+		err := json.Unmarshal([]byte(cashUrlInfo), urlInfo)
+		if err != nil {
+			panic(err)
+		}
+		return urlInfo.LongUrl
+	}
+	return s.UrlRepository.FindShortUrlPostgresql(shortUrl)
 }
 
 func (s *UrlServiceImpl) Create(shorten model.Shorten) string {
